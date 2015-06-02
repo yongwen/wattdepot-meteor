@@ -23,17 +23,22 @@
                     <div class="nav-item options-mobile">
                         <select class="list-edit">
                             <option disabled selected>Select an action</option>
-                            {{#if userId}}
-                                <option value="public">Make Public</option>
-                            {{else}}
-                                <option value="private">Make Private</option>
-                            {{/if}}
+                            <option value="chart">Chart</option>
+                            <option value="focus_chart">FocusChart</option>
                             <option value="delete">Delete</option>
                         </select>
                         <span class="icon-cog"></span>
                     </div>
                     <div class="options-web">
-
+                      {{#if feed_state }}
+                      <a href="" id="stop_feed">
+                          <span class="chart-list">Stop Feed</span>
+                      </a>
+                      {{else}}
+                      <a href="" id="start_feed" class="chart-list">
+                          Feed Random Data
+                      </a>
+                      {{/if}}
                         <a href="{{pathFor 'visualization' _id=myid}}">
                             <span class="chart-list">Chart</span>
                         </a>
@@ -41,15 +46,6 @@
                         <a href="{{pathFor 'visualization2' _id=myid}}">
                             <span class="chart-list">FocusChart</span>
                         </a>
-
-                        <a class="js-toggle-list-privacy nav-item">
-                            {{#if userId}}
-                                <span class="icon-lock" title="Make list public"></span>
-                            {{else}}
-                                <span class="icon-unlock" title="Make list private"></span>
-                            {{/if}}
-                        </a>
-
                         <a class="js-delete-list nav-item">
                             <span class="icon-trash" title="Delete list"></span>
                         </a>
@@ -58,13 +54,18 @@
             {{/if}}
 
             <form class="js-todo-new todo-new input-symbol">
-                <input type="text" placeholder="Type to add new tasks">
+                <input type="text" placeholder="Type here to add new measurements">
                 <span class="icon-add js-todo-add"></span>
             </form>
         </nav>
 
         <div class="content-scrollable list-items">
-
+            <div class="list-item">
+                <span class="title-wrapper">Location: {{location}}</span>
+            </div>
+            <div class="list-item">
+                <input readonly type="text" value="Measurements"> TimeStamp
+            </div>
             {{#if measurementsReady}}
                 {{#with _id}} {{! Establish new data context with only the '_id'
                           field. This way, when the 'incompleteCount' field

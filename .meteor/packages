@@ -9,6 +9,6 @@ insecure
 less
 accounts-password
 iron:router
-simple:rest
 sergeyt:dimple
 sergeyt:d3
+nvd3:nvd3

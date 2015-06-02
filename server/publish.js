@@ -3,5 +3,5 @@ Meteor.publish('sensors', function() {
 });
 
 Meteor.publish('measurements', function(sensorId) {
-  return Measurements.find({sensorId: sensorId}, {sort: {timeStamp: 1}, limit: 200});
+  return Measurements.find({sensorId: sensorId}, {sort: {timeStamp: -1}, limit: 50});
 });

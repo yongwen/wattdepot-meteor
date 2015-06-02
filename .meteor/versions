@@ -8,7 +8,7 @@ blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
 check@1.0.5
-d3js:d3@3.4.13
+d3js:d3@3.5.5
 ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
@@ -42,6 +42,7 @@ minimongo@1.0.8
 mobile-status-bar@1.0.3
 mongo@1.1.0
 npm-bcrypt@0.7.8_2
+nvd3:nvd3@1.7.1
 observe-sequence@1.0.6
 ordered-dict@1.0.3
 random@1.0.3
@@ -55,8 +56,6 @@ sergeyt:dimple@2.1.0_1
 service-configuration@1.0.4
 session@1.1.0
 sha@1.0.3
-simple:json-routes@1.0.3
-simple:rest@0.2.3
 spacebars@1.0.6
 spacebars-compiler@1.0.6
 srp@1.0.3

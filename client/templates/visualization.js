@@ -41,7 +41,7 @@ Template.visualization.onRendered(function() {
     Deps.autorun(function () {
         d3.select("#chartContainer").selectAll("svg").remove();
 
-        var svg = dimple.newSvg("#chartContainer", "100%", 500);
+        var svg = dimple.newSvg("#chartContainer", "100%", 350);
 
         var measurements = Measurements.find();
         var data = [];
@@ -49,10 +49,10 @@ Template.visualization.onRendered(function() {
             data.push({timeStamp: measurement.timeStamp.toLocaleString(), value: measurement.value});
         });
 
-        console.log("data=" + data.length);
+        //console.log("data=" + data.length);
         chart = new dimple.chart(svg, data);
         //chart.setBounds(60, 30, 500, 280);
-        chart.setMargins("60px", "30px", "60px", "170px");
+        //chart.setMargins("60px", "30px", "60px", "170px");
 
         var x = chart.addTimeAxis("x", "timeStamp", "%m/%d/%Y, %I:%M:%S %p", "%Y-%m-%d %H:%M:%S");
         x.addOrderRule("Date");
@@ -85,3 +85,53 @@ Template.visualization.onRendered(function() {
     };
 });
 
+Template.visualization.events({
+    'click .js-cancel': function() {
+        Session.set(EDITING_KEY, false);
+    },
+
+    'keydown input[type=text]': function(event) {
+        // ESC
+        if (27 === event.which) {
+            event.preventDefault();
+            $(event.target).blur();
+        }
+    },
+
+    'blur input[type=text]': function(event, template) {
+        // if we are still editing (we haven't just clicked the cancel button)
+        if (Session.get(EDITING_KEY))
+            saveSensor(this, template);
+    },
+
+    'click .js-edit-list': function(event, template) {
+        Router.go('sensorsShow', {_id: this._id.toHexString()});
+    },
+
+    // handle mousedown otherwise the blur handler above will swallow the click
+    // on iOS, we still require the click event so handle both
+    'mousedown .js-cancel, click .js-cancel': function(event) {
+        event.preventDefault();
+        Session.set(EDITING_KEY, false);
+    },
+
+    'click .js-todo-add': function(event, template) {
+        template.$('.js-todo-new input').focus();
+    },
+
+    'submit .js-todo-new': function(event) {
+        event.preventDefault();
+
+        var $input = $(event.target).find('[type=text]');
+        if (! $input.val())
+            return;
+
+        Measurements.insert({
+            sensorId: this._id.toHexString(),
+            value: $input.val(),
+            timeStamp: new Date()
+        });
+        Sensors.update(this._id, {$inc: {measurementCount: 1}});
+        $input.val('');
+    }
+});

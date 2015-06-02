@@ -7,7 +7,7 @@ Template.visualization2.helpers({
 });
 
 Template.visualization2.onRendered(function() {
-    Deps.autorun(function () {
+  Deps.autorun(function () {
         //d3.select("#chart").selectAll("g").remove();
 
         var measurements = Measurements.find();
@@ -23,7 +23,7 @@ Template.visualization2.onRendered(function() {
         var chart;
         nv.addGraph(function() {
             chart = nv.models.lineWithFocusChart();
-            chart.height(380);
+            chart.height(280);
             chart
                 .xScale(d3.time.scale()) // use a time scale instead of plain numbers in order to get nice round default values in the axis
                 .duration(0)
@@ -67,6 +67,57 @@ Template.visualization2.onRendered(function() {
             //tooltip.headerFormatter(function (d) { return tsFormat(new Date(d)); });
             return chart;
         });
-    });
+      });
 });
 
+Template.visualization2.events({
+    'click .js-cancel': function() {
+        Session.set(EDITING_KEY, false);
+    },
+
+    'keydown input[type=text]': function(event) {
+        // ESC
+        if (27 === event.which) {
+            event.preventDefault();
+            $(event.target).blur();
+        }
+    },
+
+    'blur input[type=text]': function(event, template) {
+        // if we are still editing (we haven't just clicked the cancel button)
+        if (Session.get(EDITING_KEY))
+            saveSensor(this, template);
+    },
+
+    'click .js-edit-list': function(event, template) {
+        Router.go('sensorsShow', {_id: this._id.toHexString()});
+    },
+
+    // handle mousedown otherwise the blur handler above will swallow the click
+    // on iOS, we still require the click event so handle both
+    'mousedown .js-cancel, click .js-cancel': function(event) {
+        event.preventDefault();
+        Session.set(EDITING_KEY, false);
+    },
+
+    'click .js-todo-add': function(event, template) {
+        template.$('.js-todo-new input').focus();
+    },
+
+    'submit .js-todo-new': function(event) {
+        event.preventDefault();
+
+        var $input = $(event.target).find('[type=text]');
+        if (! $input.val())
+            return;
+
+        Measurements.insert({
+            sensorId: this._id.toHexString(),
+            value: $input.val(),
+            timeStamp: new Date()
+        });
+        Sensors.update(this._id, {$inc: {measurementCount: 1}});
+        $input.val('');
+    }
+
+});

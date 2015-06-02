@@ -1,23 +1,27 @@
 <template name="visualization">
     <div class="page lists-show">
         <nav class="js-title-nav">
-                <div class="nav-group">
-                    <a href="#" class="js-menu nav-item"><span class="icon-list-unordered" title="Show menu"></span></a>
-                </div>
+            <div class="nav-group">
+                <a href="#" class="js-menu nav-item"><span class="icon-list-unordered" title="Show menu"></span></a>
+            </div>
 
-                <h1 class="js-edit-list title-page">
-                    <span class="title-wrapper">{{name}}</span>
-                    <span class="count-list">{{measurementCount}}</span>
-                </h1>
+            <h1 class="js-edit-list title-page">
+                <span class="title-wrapper">{{name}}</span>
+                <span class="count-list">{{measurementCount}}</span>
+            </h1>
 
-                <div class="nav-group right">
-                        <a href="{{pathFor 'visualization2' _id=myid}}">
-                            <span class="chart-list">FocusChart</span>
-                        </a>
-                </div>
+            <div class="nav-group right">
+                <a href="{{pathFor 'visualization2' _id=myid}}">
+                    <span class="chart-list">FocusChart</span>
+                </a>
+            </div>
+            <form class="js-todo-new todo-new input-symbol">
+                <input type="text" placeholder="Type here to add new measurements">
+                <span class="icon-add js-todo-add"></span>
+            </form>
         </nav>
 
-        <div class="content-scrollable list-items">
+        <div class="content-scrollable">
             <div id="chartContainer">
             </div>
         </div>
