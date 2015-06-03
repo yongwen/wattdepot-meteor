@@ -24,7 +24,6 @@
                         <select class="list-edit">
                             <option disabled selected>Select an action</option>
                             <option value="chart">Chart</option>
-                            <option value="focus_chart">FocusChart</option>
                             <option value="delete">Delete</option>
                         </select>
                         <span class="icon-cog"></span>
@@ -41,10 +40,6 @@
                       {{/if}}
                         <a href="{{pathFor 'visualization' _id=myid}}">
                             <span class="chart-list">Chart</span>
-                        </a>
-
-                        <a href="{{pathFor 'visualization2' _id=myid}}">
-                            <span class="chart-list">FocusChart</span>
                         </a>
                         <a class="js-delete-list nav-item">
                             <span class="icon-trash" title="Delete list"></span>

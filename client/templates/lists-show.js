@@ -1,6 +1,7 @@
 var EDITING_KEY = 'editingList';
 var FEED_STATES = 'feed_states';
 var FEED_TIMERS = 'feed_timers';
+var START_VALUE = 100;
 
 Session.setDefault(EDITING_KEY, false);
 
@@ -38,12 +39,8 @@ var deleteSensor = function(sensor) {
   }
 };
 
-
-var random_measurement = function (sensorId, value) {
-  value = value + Math.floor(Math.random() * 20 - 10);
-    if (value < 0) {
-        value = START_VALUE;
-    }
+// use Meteor collection to feed measurement
+var insert_measurement = function (sensorId, value) {
   var measurement = {
     sensorId: sensorId,
     value: value,
@@ -54,6 +51,22 @@ var random_measurement = function (sensorId, value) {
 
   var sensorObjectId = new Mongo.ObjectID(sensorId);
   Sensors.update(sensorObjectId, {$inc: {measurementCount: 1}});
+};
+
+// use RestAPI to feed measurement
+var post_measurement = function (sensorId, value) {
+  var url = '/api/measurement/' + sensorId;
+  $.post(url, {value: value});
+};
+
+var random_measurement = function (sensorId, value) {
+  value = value + Math.floor(Math.random() * 20 - 10);
+    if (value < 0) {
+        value = START_VALUE;
+    }
+
+  post_measurement(sensorId, value);
+  return value;
 };
 
 var setSessionMap = function(name, key, value) {
@@ -73,7 +86,7 @@ var setResetInterval = function(bool, sensorId, value){
   if(bool){
 
     var timer = setInterval(function(){
-      random_measurement(sensorId, value)},1000);
+      value = random_measurement(sensorId, value)},1000);
 
     setSessionMap(FEED_TIMERS, sensorId, timer);
     setSessionMap(FEED_STATES, sensorId, true);
@@ -111,7 +124,7 @@ Template.sensorsShow.helpers({
 Template.sensorsShow.events({
   'click #start_feed': function(e){
     e.preventDefault();
-    setResetInterval(true, this._id.toHexString(), 100);
+    setResetInterval(true, this._id.toHexString(), START_VALUE);
   },
 
   'click #stop_feed': function(e){
