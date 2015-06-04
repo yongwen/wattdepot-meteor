@@ -6,27 +6,25 @@
         </div>
 
         <h1 class="js-edit-list title-page">
-            <span class="title-wrapper">{{name}}</span>
-            <span class="count-list">{{measurementCount}}</span>
+            <span class="title-wrapper">Daily Chart for {{name}}</span>
         </h1>
 
         <div class="nav-group right">
-            <a href="{{pathFor 'visHourly' _id=myid}}">
-                <span class="chart-list">HourlyChart</span>
+            <a href="{{pathFor 'visHourly' _id=myid year=endYear month=endMonth}}">
+                <span class="chart-list">HourlyChart for month {{endYear}}-{{endMonth}} </span>
             </a>
         </div>
     </nav>
 
-
-    {{#if dailyMeasurementsReady}}
+    {{#if dailyDataReady}}
         <div class="content-scrollable list-items">
-
-            <svg id="chart"></svg>
-
+            <div id="chartContainer" style="height: 500px">
+                <svg id="daily_chart"></svg>
+            </div>
         </div>
     {{else}}
         <div class="wrapper-message">
-            <div class="title-message">Loading aggregated measurements...</div>
+            <div class="title-message">Loading measurements...</div>
         </div>
     {{/if}}
 

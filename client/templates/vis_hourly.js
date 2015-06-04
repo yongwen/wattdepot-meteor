@@ -3,32 +3,58 @@
  */
 
 Template.visHourly.helpers({
-    myid: function() { return this._id.toHexString();},
-
-    hourlyMeasurementsReady: function() {
-        return Router.current().hourlyMeasurementsHandle.ready();
+    myid: function () {
+        return Router.current().params._id;
     },
+    year: function () {
+        return Router.current().params.year;
+    },
+    month: function () {
+        return Router.current().params.month;
+    },
+    previousMonth: function () {
+        return parseInt(Router.current().params.month) - 1;
+    },
+    nextMonth: function () {
+        return parseInt(Router.current().params.month) + 1;
+    },
+    dataReady: function() {return Session.get("data_ready");},
 });
 
-Template.visHourly.onRendered(function() {
-    Deps.autorun(function () {
-        var measurements = HourlyMeasurements.find();
+Template.visHourly.onRendered(function () {
+    var showChart = function () {
+        var year = parseInt(Router.current().params.year);
+        var month = parseInt(Router.current().params.month);
         var data = [{
             key: "Stream",
             values: []
         }];
 
-        measurements.forEach(function (measurement) {
-            var value = {
-                x: (new Date(2015, 4, measurement.id.day, measurement.id.hour)).valueOf(),
-                y: Math.round(measurement.avg)
-            };
-            //console.log(value);
-            data[0].values.push(value);
-        });
+        Meteor.call("get_h_measurements",
+            Router.current().params._id, Router.current().params.year, Router.current().params.month,
+            function (err, measurements) {
+                console.log("result=" + measurements.length);
+                measurements.forEach(function (measurement) {
+                    var value = {
+                        x: (new Date(year, month - 1, measurement._id.day, measurement._id.hour)).valueOf(),
+                        y: Math.round(measurement.avg)
+                    };
+                    //console.log(value);
+                    data[0].values.push(value);
+                });
 
-        if (data[0].values.length != 0)
-            showLineWithFocusChart(data);
-    });
+                Session.set("data_ready", true);
+
+                if (data[0].values.length > 0) {
+                    showLineWithFocusChart('#hourly_chart', data);
+                } else {
+                    console.log("g remove");
+                    $("g").remove();
+
+                    showLineWithFocusChart('#hourly_chart', data);
+                }
+            });
+    };
+    Deps.autorun(showChart);
 });
 
