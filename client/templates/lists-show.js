@@ -117,11 +117,46 @@ Template.sensorsShow.helpers({
   },
 
   measurements: function(sensorId) {
-    return Measurements.find({},{sort: {timeStamp: -1}});
+    return Measurements.find({}, {sort: {timeStamp: -1}, limit: 50});
   }
 });
 
+var insertGreenButtonCSV = function(sensorId, row) {
+  Measurements.insert({
+    sensorId: sensorId.toHexString(),
+    value: parseFloat(row.data[0]["Usage (KWH)"]),  // value
+    timeStamp: new Date(row.data[0]["Time period (start)"]),  // timestamp
+  });
+};
+
+var insertEGaugeCSV = function(sensorId, row) {
+  Measurements.insert({
+    sensorId: sensorId.toHexString(),
+    value: parseFloat(row.data[0]["use [kW]"]),  // value
+    timeStamp: new Date(row.data[0]["Date & Time"]),  // timestamp
+  });
+};
+
 Template.sensorsShow.events({
+  'click #submit-file': function () {
+    var file = $("#csv-file")[0].files[0];
+    var sensorId = this._id;
+    console.log(file);
+    Papa.parse(file, {
+      header: true,
+      worker: true,
+      step: function(row){
+        //console.log(row.data);
+        //insertGreenButtonCSV(sensorId, row);
+        insertEGaugeCSV(sensorId, row);
+        Sensors.update(sensorId, {$inc: {measurementCount: 1}});
+        $("#csv-file").val('');
+      },
+      complete: function() {
+        console.log("all done");
+      }
+    })
+  },
   'click #start_feed': function(e){
     e.preventDefault();
     setResetInterval(true, this._id.toHexString(), START_VALUE);
@@ -197,7 +232,7 @@ Template.sensorsShow.events({
 
     Measurements.insert({
       sensorId: this._id.toHexString(),
-      value: $input.val(),
+      value: parseInt($input.val()),
       timeStamp: new Date()
     });
     Sensors.update(this._id, {$inc: {measurementCount: 1}});

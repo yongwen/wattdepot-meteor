@@ -86,12 +86,12 @@ showLineWithFocusChart = function(div, data) {
         ;
         chart.yAxis
             .showMaxMin(false)
-            .tickFormat(d3.format(",.0f"))
+            .tickFormat(d3.format(",.2f"))
         ;
 
         chart.y2Axis
             .showMaxMin(false)
-            .tickFormat(d3.format(",.0f"))
+            .tickFormat(d3.format(",.2f"))
         ;
         var svgElem = d3.select(div);
         svgElem

@@ -37,15 +37,12 @@ var cleanAxis = function (axis, oneInEvery) {
 };
 
 Template.visualization.onRendered(function() {
-    Deps.autorun(function () {
         var measurements = Measurements.find();
         var data = [];
         measurements.forEach(function (measurement) {
             data.push({timeStamp: measurement.timeStamp.toLocaleString(), value: measurement.value});
         });
-
         showLineChart("#chartContainer", data);
-    });
 });
 
 Template.visualization.events({

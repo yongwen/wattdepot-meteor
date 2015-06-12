@@ -31,7 +31,7 @@ var showDailyChart = function () {
             for (var i = 0; i < measurements.length; i++) {
                 var value = {
                     x: (new Date(measurements[i]._id.year, measurements[i]._id.month - 1, measurements[i]._id.day)).valueOf(),
-                    y: Math.round(measurements[i].avg)
+                    y: measurements[i].avg
                 };
                 if (i == 0) {
                     Session.set(DAILY_CHART_END_YEAR, measurements[i]._id.year);
@@ -54,5 +54,5 @@ var showDailyChart = function () {
 };
 
 Template.visDaily.onRendered(function () {
-    Deps.autorun(showDailyChart);
+    showDailyChart();
 });

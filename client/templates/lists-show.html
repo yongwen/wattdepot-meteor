@@ -29,17 +29,21 @@
                         <span class="icon-cog"></span>
                     </div>
                     <div class="options-web">
-                      {{#if feed_state }}
-                      <a href="" id="stop_feed">
-                          <span class="chart-list">Stop Feed</span>
-                      </a>
-                      {{else}}
-                      <a href="" id="start_feed" class="chart-list">
-                          Feed Random Data
-                      </a>
-                      {{/if}}
+
+                        {{#if feed_state }}
+                            <a href="" id="stop_feed">
+                                <span class="chart-list">Stop Feed</span>
+                            </a>
+                        {{else}}
+                            <a href="" id="start_feed" class="chart-list">
+                                Feed Random Data
+                            </a>
+                        {{/if}}
                         <a href="{{pathFor 'visualization' _id=myid}}">
                             <span class="chart-list">Chart</span>
+                        </a>
+                        <a href="{{pathFor 'visMeter' _id=myid}}">
+                            <span class="chart-list">Meter</span>
                         </a>
                         <a class="js-delete-list nav-item">
                             <span class="icon-trash" title="Delete list"></span>
@@ -51,6 +55,12 @@
             <form class="js-todo-new todo-new input-symbol">
                 <input type="text" placeholder="Type here to add new measurements">
                 <span class="icon-add js-todo-add"></span>
+                <div class="nav-group right">
+                    <div class="options-web">
+                        <input type="file" id="csv-file" name="files" class="chart-list"/>
+                        <button id="submit-file" class="chart-list">Submit</button>
+                    </div>
+                </div>
             </form>
         </nav>
 
