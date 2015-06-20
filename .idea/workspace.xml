@@ -2,45 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d14ca68-d14f-463e-9421-b3cba9e8ccaf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/SFOWeather2014Hourly.xlsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/cob-prkctrCenterData2014Hourly.xlsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/cob-prkctrCenterData2015Hourly.xlsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/cob-prkctrCenterData2015Minutes.xlsx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/2014HourlyEnergyEgauge.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/2014HourlyGreenbuttonSDGE.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/2014HourlySolarEgauge.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/2014HourlyTemperatureSFO.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/2015HourlyEnergyEgauge.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/lib/cubism.v1.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/lib/d3heatmap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/importer.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/node-utils.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/templates/sensors.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/templates/sensors.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/private/test.csv" />
-      <change type="DELETED" beforePath="C:\Users\yxu\OneDrive\meteor\sense\data\greenbutton.csv" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\yxu\OneDrive\meteor\sense\private\cob-prkctrCenterData2014Hourly.csv" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\yxu\OneDrive\meteor\sense\private\cob-prkctrCenterData2015Hourly.csv" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\yxu\OneDrive\meteor\sense\private\cob-prkctrCenterData2015Minutes.csv" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\yxu\OneDrive\meteor\sense\server\lib\importer.js" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\yxu\OneDrive\meteor\sense\.idea\todos.iml" afterPath="$PROJECT_DIR$/.idea/sense.iml" />
-      <change type="MOVED" beforePath="C:\Users\yxu\OneDrive\meteor\sense\data\queries.txt" afterPath="$PROJECT_DIR$/private/queries.txt" />
-      <change type="MOVED" beforePath="C:\Users\yxu\OneDrive\meteor\sense\server\lib\server-router.js" afterPath="$PROJECT_DIR$/server/lib/api-router.js" />
-      <change type="MOVED" beforePath="C:\Users\yxu\OneDrive\meteor\sense\server\lib\utils.js" afterPath="$PROJECT_DIR$/server/lib/api-utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/lib/bioheatmap.js" afterPath="$PROJECT_DIR$/client/lib/bioheatmap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/collections.js" afterPath="$PROJECT_DIR$/lib/collections.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/lib/google_charts.js" afterPath="$PROJECT_DIR$/client/lib/google_charts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/head.html" afterPath="$PROJECT_DIR$/client/head.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/stylesheets/globals/layout.import.less" afterPath="$PROJECT_DIR$/client/stylesheets/globals/layout.import.less" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/lists-show.js" afterPath="$PROJECT_DIR$/client/templates/lists-show.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/packages" afterPath="$PROJECT_DIR$/.meteor/packages" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/publish.js" afterPath="$PROJECT_DIR$/server/publish.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/router.js" afterPath="$PROJECT_DIR$/lib/router.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/versions" afterPath="$PROJECT_DIR$/.meteor/versions" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/vis_meter.html" afterPath="$PROJECT_DIR$/client/templates/vis_meter.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/vis_meter.js" afterPath="$PROJECT_DIR$/client/templates/vis_meter.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="todos.iws" />
@@ -115,8 +76,8 @@
       <file leaf-file-name="vis_meter.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/templates/vis_meter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.1726027">
-              <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.26584867">
+              <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -240,8 +201,7 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="68" />
-    <option name="y" value="10" />
+    <option name="x" value="476" />
     <option name="width" value="1386" />
     <option name="height" value="1044" />
   </component>
@@ -595,25 +555,37 @@
       <option name="project" value="LOCAL" />
       <updated>1433468179467</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="add cubism visualization, importer, wattdepot data importer">
+      <created>1434795369343</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1434795369343</updated>
+    </task>
+    <task id="LOCAL-00006" summary="move data files">
+      <created>1434795712410</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1434795712410</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="68" y="10" width="1386" height="1044" extended-state="0" />
+    <frame x="476" y="0" width="1386" height="1044" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23516321" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23516321" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.56955093" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.43311402" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39978093" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2029549" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31403118" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36120403" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -660,7 +632,9 @@
     <MESSAGE value="add aggregation" />
     <MESSAGE value="fix aggregation" />
     <MESSAGE value="refactor rest api route, implement interpolation" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor rest api route, implement interpolation" />
+    <MESSAGE value="add cubism visualization, importer, wattdepot data importer" />
+    <MESSAGE value="move data files" />
+    <option name="LAST_COMMIT_MESSAGE" value="move data files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1034,8 +1008,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/templates/vis_meter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.1726027">
-          <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.26584867">
+          <caret line="35" column="7" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
           <folding />
         </state>
       </provider>
