@@ -50,17 +50,17 @@ drawGoogleHotSpot = function (container, data) {
     //console.log(data);
 
     var options = {
-        height: 500,
+        height: 2500,
         width: 700,
         chartArea: {width: '80%', height: '80%'},
         colors:['green','red'],
         hAxis: {title: 'time', gridlines: {count:13}},
         vAxis: {title: 'day', gridlines: {count: 9}},
-        sizeAxis:{maxSize:15,minSize:5},
+        sizeAxis:{maxSize:10,minSize:5},
     };
 
     var dataTable = getDataTable(data);
-    //console.log(dataTable);
+    console.log(dataTable);
     var chart = new google.visualization.BubbleChart(document.getElementById(container));
     chart.draw(dataTable, options);
 
@@ -75,7 +75,7 @@ drawGoogleHotSpot = function (container, data) {
 
         for (var i=0; i<data.length; i++) {
             value = Math.round(data[i].avg);
-            dataTable.addRow(['', data[i]._id.hour, data[i]._id.day, value, value]);
+            dataTable.addRow(['', data[i]._id.hour, data[i]._id.day + (data[i]._id.month-1)*30, value, value]);
         }
 
         return dataTable;
@@ -132,5 +132,6 @@ drawGoogleHeatMap = function(container, data) {
     };
 
     heatmap = new org.systemsbiology.visualization.BioHeatMap(document.getElementById(container));
+    //console.log(dataTable);
     heatmap.draw(dataTable, options);
 }

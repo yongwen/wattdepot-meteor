@@ -130,7 +130,7 @@ $.extend(org.systemsbiology.visualization.BioHeatMap.prototype, {
     // Parameter data is of type google.visualization.DataTable.
     // Parameter options is a name/value map of options.
     draw: function(data, options) {
-        console.log(data);
+        //console.log(data);
         this.data = data;
         this.options = options;
         this._setupCanvas();
@@ -193,6 +193,7 @@ $.extend(org.systemsbiology.visualization.BioHeatMap.prototype, {
 
     // get's the current selected rows,cols or cells
     getSelection: function() {
+        console.log(this._selected);
         return this._selected;
     },
 

@@ -37,41 +37,45 @@ var showGoogleGauge = function () {
 };
 
 var showGoogleHotSpot = function () {
-    $(document).ready(function () {
         var sensorId = Router.current().params._id;
-        var url = "/api/measurements/" + sensorId + "?ts_start=2010-05-01&ts_end=2015-06-10&step=1hours";
+        var url = "/api/measurements/" + sensorId + "?ts_start=2010-05-01&ts_end=2015-06-10&step=1hours&limit=720";
         jQuery.get(url, function (results) {
             drawGoogleHotSpot("hotSpotContainer", results);
         });
-    })
 }
 
 var showGoogleAnnotation = function () {
         var sensorId = Router.current().params._id;
-        var url = "/api/measurements/" + sensorId + "?ts_start=2010-06-07&ts_end=2015-06-10";
+        var url = "/api/measurements/" + sensorId + "?ts_start=2010-06-07&ts_end=2015-06-10&limit=720";
         jQuery.get(url, function (results) {
             drawGoogleAnnotation("annotationContainer", results);
         });
 }
 
-var showGoogleHeadMap = function () {
-    $(document).ready(function () {
+var showGoogleHeatMap = function () {
         var sensorId = Router.current().params._id;
-        var url = "/api/measurements/" + sensorId + "?ts_start=2010-04-01&ts_end=2016-04-10&step=1hours";
+        var url = "/api/measurements/" + sensorId + "?ts_start=2010-04-01&ts_end=2016-04-10&step=1hours&limit=720";
         jQuery.get(url, function (results) {
             drawGoogleHeatMap("heatMapContainer", results);
         });
-    })
 };
 
+var showD3HeatMap = function() {
+    var sensorId = Router.current().params._id;
+    var url = "/api/measurements/" + sensorId + "?ts_start=2011-01-01&ts_end=2015-06-01&step=1hours&limit=43200";
+    //var url = "/api/measurements/" + sensorId + "?ts_start=2011-01-01&ts_end=2015-06-01&step=1hours&limit=720";
+    jQuery.get(url, function (results) {
+        drawD3HeatMap("#D3heatmap", results);
+    });
+};
 Template.visMeter.onRendered(function () {
-    Deps.autorun(function (){
     showGoogleMeter();
     showGoogleHotSpot();
     showGoogleGauge();
      showGoogleAnnotation();
-        showGoogleHeadMap();
-    });
+    // showGoogleHeatMap();
+
+        showD3HeatMap();
 });
 
 Template.visMeter.helpers({

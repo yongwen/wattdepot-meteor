@@ -54,9 +54,28 @@ var insert_measurement = function (sensorId, value) {
 };
 
 // use RestAPI to feed measurement
-var post_measurement = function (sensorId, value) {
+var post_measurement = function (sensorId, value, timeStamp) {
   var url = '/api/measurement/' + sensorId;
-  $.post(url, {value: value});
+  if (timeStamp) $.post(url, {value: value, timeStamp: timeStamp});
+  else $.post(url, {value: value});
+};
+
+var insertGreenButtonCSV = function(sensorId, row) {
+  Measurements.insert({
+    sensorId: sensorId.toHexString(),
+    value: parseFloat(row.data[0]["Usage (KWH)"]),  // value
+    timeStamp: new Date(row.data[0]["Time period (start)"]),  // timestamp
+  });
+  Sensors.update(sensorId, {$inc: {measurementCount: 1}});
+};
+
+var insertEGaugeCSV = function(sensorId, row) {
+  Measurements.insert({
+    sensorId: sensorId.toHexString(),
+    value: parseFloat(row.data[0]["use [kW]"]),  // value
+    timeStamp: new Date(row.data[0]["Date & Time"]),  // timestamp
+  });
+  Sensors.update(sensorId, {$inc: {measurementCount: 1}});
 };
 
 var random_measurement = function (sensorId, value) {
@@ -67,6 +86,30 @@ var random_measurement = function (sensorId, value) {
 
   post_measurement(sensorId, value);
   return value;
+};
+
+var get_wattdepot_measurement = function (sensorId, sensorName) {
+  var url = "http://server.wattdepot.org:8190/wattdepot/sources/"+
+        sensorName +
+        "/sensordata/latest?tq=select%20timePoint%2C%20powerConsumed";
+  console.log(url);
+  jQuery.get(url, function (results) {
+    var value, timestamp;
+    var $xml = $( results );
+    $($xml).each(function(){
+      timestamp = $(this).find("Timestamp").text();
+      $prop = $(this).find("Properties>Property");
+      $prop.each(function() {
+        var key = $(this).find("Key").text();
+        if (key == 'powerConsumed') {
+          value = $(this).find("Value").text();
+        }
+      });
+    });
+
+    console.log(value + " " +timestamp);
+    post_measurement(sensorId, value, timestamp);
+  });
 };
 
 var setSessionMap = function(name, key, value) {
@@ -81,12 +124,13 @@ var setSessionMap = function(name, key, value) {
   }
 };
 
-var setResetInterval = function(bool, sensorId, value){
+var setResetInterval = function(bool, sensorId, sensorName){
 
   if(bool){
 
     var timer = setInterval(function(){
-      value = random_measurement(sensorId, value)},1000);
+      // value = random_measurement(sensorId, value)},1000);
+      get_wattdepot_measurement(sensorId, sensorName);}, 1000);
 
     setSessionMap(FEED_TIMERS, sensorId, timer);
     setSessionMap(FEED_STATES, sensorId, true);
@@ -121,35 +165,19 @@ Template.sensorsShow.helpers({
   }
 });
 
-var insertGreenButtonCSV = function(sensorId, row) {
-  Measurements.insert({
-    sensorId: sensorId.toHexString(),
-    value: parseFloat(row.data[0]["Usage (KWH)"]),  // value
-    timeStamp: new Date(row.data[0]["Time period (start)"]),  // timestamp
-  });
-};
-
-var insertEGaugeCSV = function(sensorId, row) {
-  Measurements.insert({
-    sensorId: sensorId.toHexString(),
-    value: parseFloat(row.data[0]["use [kW]"]),  // value
-    timeStamp: new Date(row.data[0]["Date & Time"]),  // timestamp
-  });
-};
-
 Template.sensorsShow.events({
   'click #submit-file': function () {
     var file = $("#csv-file")[0].files[0];
     var sensorId = this._id;
-    console.log(file);
+    //console.log(file);
     Papa.parse(file, {
-      header: true,
+      //header: true,
       worker: true,
       step: function(row){
         //console.log(row.data);
         //insertGreenButtonCSV(sensorId, row);
-        insertEGaugeCSV(sensorId, row);
-        Sensors.update(sensorId, {$inc: {measurementCount: 1}});
+        //insertEGaugeCSV(sensorId, row);
+        post_measurement(sensorId, row.data[0][1], row.data[0][0]);
         $("#csv-file").val('');
       },
       complete: function() {
@@ -159,12 +187,12 @@ Template.sensorsShow.events({
   },
   'click #start_feed': function(e){
     e.preventDefault();
-    setResetInterval(true, this._id.toHexString(), START_VALUE);
+    setResetInterval(true, this._id.toHexString(), this.name);
   },
 
   'click #stop_feed': function(e){
     e.preventDefault();
-    setResetInterval(false, this._id.toHexString());
+    setResetInterval(false, this._id.toHexString(), this.name);
     Session.set("START_FEED_STATE", false);
   },
 

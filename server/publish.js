@@ -3,7 +3,7 @@ Meteor.publish('sensors', function () {
 });
 
 Meteor.publish('measurements', function (sensorId) {
-    return Measurements.find({sensorId: sensorId});
+    return Measurements.find({sensorId: sensorId},{limit: 100});
 });
 
 Meteor.methods({
