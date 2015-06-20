@@ -567,7 +567,13 @@
       <option name="project" value="LOCAL" />
       <updated>1434795712410</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="workspace file">
+      <created>1434795825979</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1434795825979</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -634,7 +640,8 @@
     <MESSAGE value="refactor rest api route, implement interpolation" />
     <MESSAGE value="add cubism visualization, importer, wattdepot data importer" />
     <MESSAGE value="move data files" />
-    <option name="LAST_COMMIT_MESSAGE" value="move data files" />
+    <MESSAGE value="workspace file" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
